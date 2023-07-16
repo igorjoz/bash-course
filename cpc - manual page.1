@@ -1,0 +1,60 @@
+.TH "C++ CP Comparer" 1 "11.06.2023" "1.0" "cpc man page"
+
+.SH NAME
+cpc \- Automates testing of C++ code.
+
+.SH SYNOPSIS
+.B
+./script.sh [options]
+.P
+Use the command line options to control script behavior. For interactive input, use the -i option.
+.P
+The -v option enables verbose mode, which displays additional information to the console.
+
+.SH DESCRIPTION
+cpc is a Bash script that compiles and tests C++ code based on .in input files located in a specified directory. It logs its operations to a file named 'script.log'. Each log entry includes a timestamp and a description of the operation.
+
+The script compares test output with .out files (if they exist) and records the test results, including whether the test passed or failed, the number of identical and different lines compared to the .out file, and the time taken to run the test.
+
+After all tests, the script writes a summary to 'summary.txt', which includes total tests run, passed and failed tests, pass rate, total lines of output, and number of correct and incorrect lines.
+
+.SH OPTIONS
+.IP "\fB\-d\fP"
+Specify the test directory (default: 'tests').
+.IP "\fB\-f\fP"
+Specify the C++ file name to test (default: 'main.cpp').
+.IP "\fB\-o\fP"
+Specify the output C++ file name (if different from the test file).
+.IP "\fB\-v\fP"
+Enable verbose mode, logging additional information to the console.
+.IP "\fB\-i\fP"
+Enable interactive mode, prompting for input.
+.IP "\fB\-h\fP"
+Display help information.
+.IP "\fB\-V\fP"
+Display the script version.
+
+.SH INTERACTIVE MODE
+When interactive mode is enabled with the -i option, the script will prompt for the test directory, the C++ file name to test, the output C++ file name (if different from the test file), and whether to enable verbose mode.
+
+.SH SEE ALSO
+This script makes use of several built-in commands and utilities, including but not limited to g++ for compiling C++ code, diff for comparing files, echo and read for console output and input, and command -v for checking the existence of commands. For more information on these, refer to their respective man pages.
+
+.RS
+.IP "\fBg++\fP"
+GNU C++ Compiler.
+.IP "\fBdiff\fP"
+Compares files line by line.
+.IP "\fBecho\fP"
+Display a line of text.
+.IP "\fBread\fP"
+Read a line from standard input.
+.IP "\fBcommand -v\fP"
+Check command to see if it exists or is executable.
+.RE
+
+.SH BUGS
+Please report any bugs to <igor@jozefowicz.pl>.
+
+.SH AUTHOR
+Igor Józefowicz .UR igorjozefowicz.pl .UE
