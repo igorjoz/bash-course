@@ -1,0 +1,58 @@
+OS 2023-03-20:
+cat file.txt
+
+head -NUM file.txt
+
+tail -NUM file.txt
+- logi systemowe
+
+less file.txt
+- q -> quit
+
+ls -l > file.txt
+- change output of command
+
+cut -d " " -f 1,2,3 file.txt
+
+grep "string" file.txt
+
+sed "s/student/abc/g" ls.out
+- podmień każde wystąpienie ciągu znaków między 1. i 2. slashem na ciąg znaków między 2. i 3. slashem
+
+cat file.txt | grep "string"
+- przekieruj output cat file.txt do grepa
+
+tar cvzf abc.tar.gz abc.txt
+- c = compress
+- x = extract
+- v = verbose
+- z = gnu zip
+- f = give file name
+
+
+FTP:
+
+grep "OK DOWNLOAD" cdlinux.ftp.log
+
+grep "OK DOWNLOAD" cdlinux.ftp.log | cut -d " " -f 12,13
+
+grep "OK DOWNLOAD" cdlinux.ftp.log | cut -d '"' -f 2,4
+
+grep "OK DOWNLOAD" cdlinux.ftp.log | cut -d '"' -f 2,4
+
+1. opcja
+grep "OK DOWNLOAD" cdlinux.ftp.log | cut -d '"' -f 2,4 | uniq | cut -d '"' -f 2 | rev | cut -d "/" -f 1 | rev
+
+2. opcja
+grep "OK DOWNLOAD" cdlinux.ftp.log | cut -d '"' -f 2,4 | uniq | cut -d '"' -f 2 | sed "s#.*/##"
+
+grep "OK DOWNLOAD" cdlinux.ftp.log | cut -d '"' -f 2,4 | uniq | cut -d '"' -f 2 | sed "s#.*/##" | sort | uniq -c | sort -n
+
+
+WWW:
+
+grep " 200 " cdlinux.www.log | cut -d ":" -f 2,5 | cut -d " " -f 1,7 | uniq | sed "s#.*/##" | sort | uniq -c | sort -n
+
+
+
+grep " 200 " cdlinux.ftp.log | cut -d '"' -f 2,4 | uniq | cut -d '"' -f 2 | sed "s#.*/##" | sort | uniq -c | sort -n
