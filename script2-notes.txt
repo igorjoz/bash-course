@@ -1,0 +1,188 @@
+Commands4.txt
+if statement:
+
+if [ -f $name ]; then
+echo "file does exist"
+elif [ -d $name ]; then
+echo "directory does exist"
+else
+echo "file/directory does NOT exist"
+fi
+
+
+
+man test
+-e -> exists
+-f -> file
+-d -> directory
+
+-eq -> equals
+-ne -> not equal
+-gt -> greater than
+-ge -> greater or equal
+-lt -> less than
+-le -> less or equal
+
+-z -> zero, empty string
+-n -> not zero, not empty string
+
+
+while [ warunek ]; do
+...instructions...
+done
+
+declare -i COUNTER=1
+
+while [ $COUNTER -le 5 ]; do
+echo $COUNTER
+COUNTER=$((COUNTER+1))
+done
+
+
+until [ warunek ]; do
+...instructions...
+done
+
+
+case statement
+
+echo "Run ls?"
+
+read userAnswer
+
+case $userAnswer in
+"y"|"yes"|"YES") ls;;
+[nN][oO]) echo "Won't run ls";;
+*) echo "Wrong input";;
+esac
+
+- | (pipe) -> or
+- [nN][oO] -> RegEx
+- *) -> default
+
+
+find . -name "*sh"
+-> find file with name ending with sh
+
+
+#2 mały skrypt
+
+Menu:
+1. Nazwa -> eg. plik.txt
+2. Katalog -> eg. . (kropka - ten katalog)
+3. Większy niż -> trzeba przyjąć jakąś wartość
+4. Mniejszy niż
+5. Zawartość -> eg. xyz
+6. Szukaj
+7. Koniec
+
+Wynik programu:
+Plik istnieje
+LUB
+Plik nie istnieje
+
+(nie lista znalezionych plików)
+
+Wymogi implementacyjne:
+- find -> pierwsze 4 instrukcje
+- grep -> 5. instrukcja
+- kolejność
+- zakładamy poprawność inputa, program nie musi być idiotoodporny
+- wszystkie pola są wypełnione
+
+find ...... -exec grep ......... {} \;
+
+\; -> wymuszenie wykonania polecenia
+
+
+
+find
+
+-name
+-path
+-size NUMBER[c] -> for bytes
+
+
+
+
+find -path "subdirectory/file2.txt"
+find -path ./subdirectory/file2.txt
+
+
+
+
+file-finder.sh:
+
+
+file-finder.sh
+
+#!/bin/bash
+
+fileName=
+directoryName=
+fileSizeGreaterThan=
+fileSizeLessThan=
+fileContent=
+
+echo "Menu"
+echo "1. Name (with extension)"
+echo "2. Directory"
+echo "3. Greater than (file size, bytes)"
+echo "4. Less than (file size, bytes)"
+echo "5. Content"
+echo "6. Run search"
+echo "7. Quit"
+
+read userInput
+
+while [ $userInput != "7" ]; do
+
+case $userInput in
+
+"1"|"1.")
+echo "File name: "
+read fileName
+;;
+
+"2"|"2.")
+echo "Directory name (without slash at the end): "
+read directoryName
+;;
+
+"3"|"3.")
+echo "File size greater than [bytes]: "
+read fileSizeGreaterThan
+;;
+
+"4"|"4.")
+echo "File size less than [bytes]: "
+read fileSizeLessThan
+;;
+
+"5"|"5.")
+echo "File content: "
+read fileContent
+;;
+
+"6"|"6.")
+echo "Running search..."
+find -path "${directoryName}/${fileName}"
+;;
+
+*)
+echo "Wrong input"
+;;
+esac
+
+echo "Menu"
+echo "1. Name (with extension): ${fileName}"
+echo "2. Directory: ${directoryName}"
+echo "3. Greater than (file size, bytes): ${fileSizeGreaterThan}"
+echo "4. Less than (file size, bytes): ${fileSizeLessThan}"
+echo "5. Content: ${fileContent}"
+echo "6. Run search"
+echo "7. Quit"
+
+read userInput
+
+done
