@@ -1,0 +1,36 @@
+Sprawdzarka i porównywarka do Competitive Programming in C++
+
+
+Główne funkcjonalności:
+1) generowanie plików .out rozwiązania wzorcowego / brute'a poprzez uruchomienie programu z odpowiednimi argumentami i wejściem
+2) generowanie .out rozwiązania szybkiego z odpowiednimi argumentami i wejściem poprzez uruchomienie i podanie danych wejściowych
+3) porównywanie obu outów
+4) wskazanie różnic między poszczególnymi plikami wynikowymi, kolorowanie różnic, wskazanie linijki/miejsca błędu
+
+
+Założenia i działanie skryptu:
+1) program wywołuje się poleceniem: cpc main.cpp
+    - w miejscu main.cpp należy wpisać nazwę pliku, który zawiera funkcję main
+2) testy są domyślnie szukane w folderze "tests", który powinien znajdować się w obecnym katalogu
+    - testy są domyślnie numerowane od 1, 2, 3...
+    - format nazwy testu wejściowego: 1.in, 2.in, 3.in...
+    - format nazwy oczekiwanego wyjścia: 1.out, 2.out, 3.out...
+    - format nazwy otrzymanego wyjścia: 1.txt, 2.txt, 3.txt...
+    - -d --> opcja pozwala zdefiniować nazwę katalogu z testami
+    - -f --> opcja pozwala zdefiniować nazwę pliku cpp
+    - -f --> opcja pozwala zdefiniować nazwę pliku z którego skrypt wygeneruje pliki .out (oczekiwane wyjście)
+
+
+Opcje skryptu: 
+    - -b --> opcja pozwala wygenerować plik .out dla rozwiązania brute
+    - -f --> opcja pozwala wygenerować plik .out dla rozwiązania fast
+    - -a --> opcja pozwala wygenerować pliki .out dla obu rozwiązań
+    - -i --> opcja pozwala wygenerować pliki .out dla obu rozwiązań i uruchomić je na testach
+    - -c --> opcja pozwala wygenerować pliki .out dla obu rozwiązań i porównać je
+    - -cf --> opcja pozwala wygenerować pliki .out dla obu rozwiązań, uruchomić je na testach i porównać je
+    - -cb --> opcja pozwala wygenerować pliki .out dla obu rozwiązań, uruchomić je na testach i porównać je z brute
+    - -cfb --> opcja pozwala wygenerować pliki .out dla obu rozwiązań, uruchomić je na testach, porównać je z brute i porównać je z fast
+
+
+Do przemyślenia:
+- customMain.cpp jako opcja czy pierwszy argument skryptu
